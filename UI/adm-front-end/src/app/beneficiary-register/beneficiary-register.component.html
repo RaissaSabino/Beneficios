@@ -1,0 +1,108 @@
+<app-top-bar></app-top-bar>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h5>Beneficiário</h5>
+        </div>
+        <div class="card-body">
+            <div class="container">
+                <label for="edv">EDV</label>
+                <input type="text" id="edv" placeholder="00000000">
+                <label for="name">Nome</label>
+                <input type="text" id="name" placeholder="Nome do colaborador">
+                <label for="user">Usuário</label>
+                <input type="text" id="user" placeholder="Usuário do colaborador">
+                <label for="area">Área</label>
+                <input type="text" id="area" placeholder="Área de trabalho">
+                <label for="cpf">CPF</label>
+                <input type="text" id="cpf" placeholder="000.000.000-00">
+                <label for="birthDate">Data de Aniversário</label>
+                <input type="date" id="birthDate" placeholder="00/00/0000">
+            </div>
+    
+    
+            <div class="d-flex justify-content-between">
+                <div class="title">
+                    <div class="title-beam"> <label>Produtos selecionados</label> </div>
+                </div>
+                <div class="title">
+                    <div class="prodDispo">
+                        <div class="title-beam">
+                            <label>Produtos disponíveis</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="d-flex justify-content-between">
+            
+    
+                <table class="table  table-hover table-bordered">
+    
+                    <thead>
+                        <tr>
+                            <th scope="col">Produto</th>
+                            <th scope="col" class="no-sort">Excluir</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let a of arrayProd">
+                            <td>{{a.name}}</td>
+                            <td>
+                                <a class="delete" (click)="removeProdList(a)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="bi bi-trash-fill"
+                                        viewBox="0 0 16 16">
+                                        <path
+                                            d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+                                    </svg>
+                                </a>
+    
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table  table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Produto</th>
+    
+                            <th scope="col" class="no-sort">Adiconar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let a of array">
+                            <td>{{a.name}}</td>
+                            <td>
+                                <a class="add" (click)="addProdList(a)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-plus" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                    </svg>
+                                </a>
+    
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+    
+            </div>
+        </div>
+    
+        <div class="d-flex justify-content-between flex-column  save-btn">
+    
+            <div class="pb-3 bt">
+                <a (click)="rollback()">
+                <img src="../../assets/img/icons/return.svg" alt="" srcset="">
+                </a>
+            </div>
+            <div class="bt" (click)="registerBeneficiary()">
+                <a>
+                <img src="../../assets/img/icons/save.svg" alt="" srcset="">
+                </a>
+            </div>
+        </div>
+        
+       
+    </div>
+</div>

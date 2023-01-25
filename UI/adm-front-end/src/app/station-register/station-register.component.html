@@ -1,0 +1,97 @@
+    <div class="modal-dialog modal-dialog-centered  modal-lg">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h5 class="modal-title" id="EditarlLabel">Adicionar Estação</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body add">
+                <div class="element">
+                    <label for="nome" class="col-form-label">IP:</label>
+                    <input type="text" class="form-control" id="ipAddress">
+                </div>
+                <div class="element">
+                    <label for="nome" class="col-form-label">Descrição:</label>
+                    <input type="text" class="form-control" id="description">
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="isActive" />
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Ativo</label>
+                </div>
+           
+            <div class="d-flex justify-content-between tables">
+                <div class="title">
+                    <div class="title-beam"> <label>Produtos selecionados</label> </div>
+                </div>
+                <div class="title">
+                    <div class="prodDispo">
+                        <div class="title-beam">
+                            <label>Produtos disponíveis</label>
+                        </div>
+                        <div class="select">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">
+                                        <img src="../../assets/img/icons/description.svg" alt="" srcset="">
+                                    </span>
+                                </div>
+                                <select class="form-select" id="eventosPesquisa" (input)="getAll()">
+                                    <option value="" selected>Selecione um evento</option>
+                                    <option value="{{a.id}}" *ngFor="let a of arrayEventos">{{a.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between tabelasRegistro">
+
+
+                <table class="table  table-hover table-bordered">
+
+                    <thead>
+                        <tr>
+                            <th scope="col">Produto</th>
+                            <th scope="col" class="no-sort">Excluir</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let a of arrayProd">
+                            <td>{{a.name}}</td>
+                            <td>
+                                <a (click)="removeProdList(a)">
+                                    <img src="../../assets/img/icons/trash.svg" alt="" srcset="">
+                                </a>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table  table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Produto</th>
+
+                            <th scope="col" class="no-sort">Adiconar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let a of array">
+                            <td>{{a.name}}</td>
+                            <td>
+                                <a (click)="addProdList(a)">
+                                    <img src="../../assets/img/icons/add.svg" alt="" srcset="">
+                                </a>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>    
+        </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"  data-bs-toggle="modal" data-bs-target="#Editar"  data-bs-dismiss="modal"  >Voltar</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"   (click)="registerStation()" >Salvar</button>
+            </div>
+        </div>
+    </div>

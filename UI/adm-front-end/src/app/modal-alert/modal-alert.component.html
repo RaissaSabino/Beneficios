@@ -1,0 +1,57 @@
+<!-- AVISO DATA ANTIGA-->
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+  
+      <!-- SALVO COM SUCESSO -->
+      <div *ngIf="message == 'ok'">
+        <div class="modal-body">
+          <img src="../../assets/img/ok.svg" >
+          <h1 class="modal-title" id="staticBackdropLabel">Sucesso</h1>
+          <h5 class="modal-title" id="staticBackdropLabel">operação foi realizada</h5>
+          <div class="modal-footer">
+            <button type="button" data-bs-dismiss="modal" class="btn btn-success">Ok</button>
+          </div>
+        </div>
+      </div>
+  
+      <!-- ERRO -->
+      <div *ngIf="message == 'erro'">
+        <div class="modal-body">
+          <img src="../../assets/img/erro.svg">
+          <h1 class="modal-title" id="staticBackdropLabel">Erro</h1>
+          <h5 class="modal-title" id="staticBackdropLabel">operação não foi realizada</h5>
+          <div class="modal-footer">
+            <button type="button" data-bs-dismiss="modal" class="btn btn-danger">Ok</button>
+          </div>
+        </div>
+  
+      </div>
+      <!--  ALERT -->
+      <div *ngIf="message == 'alert'">
+        <div class="modal-body">
+          <img src="../../assets/img/alert.svg">
+          <h1 class="modal-title" id="staticBackdropLabel">Atenção</h1>
+          <h5 class="modal-title" id="staticBackdropLabel">data antiga, tem certeza que deseja salvar?</h5>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" data-bs-dismiss="modal" class="btn btn-warning">Ok</button>
+          </div>
+        </div>
+  
+      </div>
+  
+      <!--  Delete -->
+      <div *ngIf="message == 'delete'">
+        <div class="modal-body">
+          <img src="../../assets/img/delete.svg">
+          <h1 class="modal-title" id="staticBackdropLabel">Excluir</h1>
+          <h5 class="modal-title" id="staticBackdropLabel">tem certeza que deseja excluir?</h5>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" data-bs-dismiss="modal" class="btn btn-danger">Ok</button>
+        </div>
+      </div>
+  
+    </div>
+  </div>

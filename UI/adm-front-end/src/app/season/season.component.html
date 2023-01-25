@@ -1,0 +1,337 @@
+<app-top-bar></app-top-bar>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h4>Estação</h4>
+            <div class="ShowCount">
+                <label for="showSelector">Estações por página:</label>
+                <input name="showSelector" id="showSelector" type="number" value="9" (change)="SetItemsPerPage()" min="1" max="{{ totalItems }}"/>
+            </div> 
+        </div>
+        <div class="card-body">
+            <div class="d-flex flex-row bd-highlight justify-content-between mb-3">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">
+                            <img src="../../assets/img/icons/ip-address.svg" alt="" srcset="">
+                        </span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Endereço de IP" id="ipPesquisa" (input)="getAll()"
+                        aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">
+                            <img src="../../assets/img/icons/description.svg" alt="" srcset="">
+                        </span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Descrição" id="descPesquisa" (input)="getAll()"
+                        aria-describedby="basic-addon1">
+                </div>
+
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">
+                            <img src="../../assets/img/icons/check.svg" alt="" srcset="">
+                        </span>
+                    </div>
+                    <select class="form-select" aria-label="Default select example" id="statusPesquisa" (input)="getAll()">
+                        <option value="" selected>Status</option>
+                        <option value="true">Ativo</option>
+                        <option value="false">Inativo</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <table id="datatable" class="table  table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col" class="no-sort">Status</th>
+                        <th scope="col">Endereço de IP</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col" class="hidden">Ativo</th>
+                        <th scope="col">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let a of array; index as i">
+                        <ng-container *ngIf="i < max">
+                            <ng-container *ngIf="i >= min">
+                        <td>
+                            <ng-container *ngIf="a.isActive == 'Sim'">
+                                <a class="delete" data-bs-toggle="modal" data-bs-target="#Active"  (click)="mostraDetalhes(a)" >                                                      
+                                    <img src="https://img.icons8.com/tiny-color/48/000000/experimental-ok-tiny-color.png"  alt="" srcset="">
+                                </a> 
+                            </ng-container>
+                            <ng-container *ngIf="a.isActive != 'Sim'">
+                                <a class="delete" data-bs-toggle="modal" data-bs-target="#Inactive"  (click)="mostraDetalhes(a)">                              
+                                    <img src="https://img.icons8.com/fluency/48/000000/cancel.png" style="height: 33px; width: 33px;" alt="" srcset="">                                
+                                </a> 
+                            </ng-container>
+
+                        </td>
+                        <td>{{a.ipAddress}}</td>
+                        <td >{{a.description}}</td>
+                        <td class="hidden">{{a.isActive}}</td>
+                        <td>
+                            <div class="actions" *ngIf="a.isActive == 'Sim'">
+                                <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                    (click)="mostraDetalhes(a)">
+                                    <img src="../../assets/img/icons/olho.svg" alt="" srcset="">
+                                </a>
+                                <div class="vr"></div>
+                                <a href="" data-bs-toggle="modal" data-bs-target="#Editar" (click)="mostraDetalhes(a)">
+                                    <img src="../../assets/img/icons/edit.svg" alt="" srcset="">
+                                </a>
+                            </div>
+                            <div class="actions" *ngIf="a.isActive != 'Sim'">
+                                <a href="" data-bs-toggle="modal" data-bs-target="#Inactive"  (click)="mostraDetalhes(a)">
+                                    <img src="../../assets/img/icons/olho.svg" alt="" srcset="">
+                                </a>
+                                <div class="vr"></div>
+                                <a href="" data-bs-toggle="modal" data-bs-target="#Inactive"  (click)="mostraDetalhes(a)">
+                                    <img src="../../assets/img/icons/edit.svg" alt="" srcset="">
+                                </a>
+                            </div>
+                        </td>
+                    </ng-container>
+                    </ng-container>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="registros">
+                Mostrando de {{ min + 1 }} até {{ max }} de
+                {{ totalItems }} registros
+                <div class="pageControl">
+
+                    <div class="buttons">
+                        <div (click)="PagAnt()" id="AntBtn" class="pageButtons">
+                        <img src="../../assets/img/icons/left.svg" alt="" />
+                        </div>
+            
+                        <div>
+                        <a class="btn btn-primary pages" >
+                            {{ pagAtual }}
+                        </a>
+                        </div>
+                        
+                        <div (click)="ProxPag()" id="ProxBtn" class="pageButtons" >
+                        <img src="../../assets/img/icons/right.svg" alt=""/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- <a [routerLink]="['/station-register']">
+        <div class="save-btn">
+            <img src="../../assets/img/icons/add.svg" alt="" srcset="">
+        </div>
+    </a> -->
+    <a  data-bs-toggle="modal" data-bs-target="#Cadastrar" >
+        <div class="save-btn">
+            <img src="../../assets/img/icons/add.svg" alt="" srcset="">
+        </div>
+    </a>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Detalhes do registro</h5>
+                    <button type="button" data-bs-dismiss="modal" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="item">
+                            <h4>IP</h4>
+                            <h5>{{detalhes.ipAddress}}</h5>
+                        </div>
+
+                        <div class="item">
+                            <h4>Descrição</h4>
+                            <h5>{{detalhes.description}}</h5>
+                        </div>
+                        <div class="item">
+                            <h4>Ativo</h4>
+                            <h5>{{detalhes.isActive}}</h5>
+                        </div>
+                        <div class="item">
+                            <h4>Produtos</h4>
+                            <div>
+                                <h5 *ngFor="let a of arrayProd">{{a.produtos.name}}</h5>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal fade" id="Editar" tabindex="-2" aria-labelledby="EditarLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="EditarlLabel">Editar Estação</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body add">
+                    <div class="element">
+                        <label for="nome" class="col-form-label">IP:</label>
+                        <input type="text" class="form-control" id="ipAddressEditar" value="{{detalhes.ipAddress}}">
+                    </div>
+                    <div class="element">
+                        <label for="nome" class="col-form-label">Descrição:</label>
+                        <input type="text" class="form-control" id="descriptionEditar" value="{{detalhes.description}}">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal"
+                        data-bs-target="#AddEstoque">Avançar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal fade" id="AddEstoque" tabindex="-3" aria-labelledby="AddEstoqueLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Editar Produtos</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex justify-content-between">
+                        <div class="title">
+                            <div class="title-beam"> <label>Produtos selecionados</label> </div>
+                        </div>
+                        <div class="title">
+                            <div class="prodDispo">
+                                <div class="title-beam">
+                                    <label>Produtos disponíveis</label>
+                                </div>
+                                <div class="select">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <img src="../../assets/img/icons/description.svg" alt="" srcset="">
+                                            </span>
+                                        </div>
+                                        <select class="form-select" id="eventosPesquisa" (input)="getAllProdPesquisa()"
+                                            id="eventIdPesquisa">
+                                            <option value="" selected>Selecione um evento</option>
+                                            <option value="{{a.id}}" *ngFor="let a of arrayEventos">{{a.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between tabelasRegistro">
+
+
+                        <table class="table  table-hover table-bordered">
+
+                            <thead>
+                                <tr>
+                                    <th scope="col">Produto</th>
+                                    <th scope="col" class="no-sort">Excluir</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let a of arrayProdEdit">
+                                    <td>{{a.name}}</td>
+                                    <td>
+                                        <a (click)="removeProdList(a)">
+                                            <img src="../../assets/img/icons/trash.svg" alt="" srcset="">
+                                        </a>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table  table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Produto</th>
+
+                                    <th scope="col" class="no-sort">Adiconar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let a of arrayProdList">
+                                    <td>{{a.name}}</td>
+                                    <td>
+                                        <a (click)="addProdList(a)">
+                                            <img src="../../assets/img/icons/add.svg" alt="" srcset="">
+                                        </a>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"  data-bs-toggle="modal" data-bs-target="#Editar"  data-bs-dismiss="modal"  >Voltar</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"   (click)="EditStationProduct()" >Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="Cadastrar" tabindex="-4" aria-labelledby="CadastrarLabel" aria-hidden="true">
+        <app-station-register></app-station-register>
+    </div>
+
+    
+    <div class="modal fade" id="Inactive" tabindex="-1" aria-labelledby="InactiveLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body inativo">
+                    <img src="../../assets/img/alert.svg">
+                    <h1 class="modal-title" id="staticBackdropLabel">Estação Inativa</h1>
+                    <h5 class="modal-title" id="staticBackdropLabel">deseja reativar?</h5>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" data-bs-dismiss="modal" class="btn btn-warning" (click)="takeMessage()">Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="Active" tabindex="-1" aria-labelledby="AtivoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body inativo">
+                    <img src="../../assets/img/erro.svg">
+                    <h1 class="modal-title" id="staticBackdropLabel">Estação Ativa</h1>
+                    <h5 class="modal-title" id="staticBackdropLabel">deseja inativar?</h5>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" data-bs-dismiss="modal" class="btn btn-danger" (click)="takeMessage()">Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

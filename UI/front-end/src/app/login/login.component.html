@@ -1,0 +1,20 @@
+<app-general-top-bar></app-general-top-bar>
+<body>
+    
+<div class="container">
+    <div class="title">Efetuar Login</div>
+    <form action="#">
+        <div class="user-details">
+            <div class="input-box">
+                <span class="details">CPF</span>
+                <input type="text" id="cpf" placeholder="000.000.000-00"  required>
+            </div>
+            <div class="input-box">
+                <span class="details">Data de nascimento</span>
+                <input type="date" id="data"  required>
+            </div>
+        </div>
+        <button class="btn-login" (click)="login()">Entrar</button>
+    </form>
+</div>
+</body>

@@ -1,0 +1,140 @@
+<div class="card">
+    <div class="card-header">
+      <h5>Retirada de Produtos - EDV</h5>
+    </div>
+    <div class="card-body">
+      <ng-container *ngIf="terceiro == false && tem == true">
+        <h4>{{nome}}</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Quantidade</th>
+            <th scope="col">Produto</th>
+            <th scope="col">Beneficiario</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of arrNovo" class="secondary">
+            <td>{{qtdAdd(product.produto.id, product.id)}}</td>
+            <td>{{nomeAdd(product.produto.id)}}</td>
+            <td>{{product.nomeBeneficiario}}</td>
+            <td>
+              <button value="{{product.produto.id}}" id="subtrair" (click)="diminui(product.produto.id, product.id)" class="action" >
+                <img src="https://cdn-assets-eu.frontify.com/s3/frontify-enterprise-files-eu/eyJwYXRoIjoiYm9zY2hcL2FjY291bnRzXC9hNVwvNDAwMDA5OFwvcHJvamVjdHNcLzc4XC9hc3NldHNcL2VkXC8zMTM4OVwvYzY2MzhjNTFlMzYzZWRjMzM5NjU4MDgwMTQ2NzE5ZGQtMTU5NTE4NDQ0NC5zdmcifQ:bosch:sUVWLFPLB19pxU8oozRzDq4FWWauT96-mLvHnBfrIpI?width=2400&color=0,123,192,1">
+              </button>
+            </td>
+          </tr>
+          <tr>
+        </tbody>
+      </table>
+      </ng-container>
+  
+      <!-- Caso o colaborador tenha pedido para um 3° retirar o produto -->
+      <ng-container *ngIf="terceiro == true && tem == false" >
+        <h4>{{nomeTerceiro}}</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Quantidade</th>
+            <th scope="col">Produto</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="secondary">
+            <td>Quantidade</td>
+            <td>Produto</td>
+          </tr>
+          <tr>
+        </tbody>
+      </table>
+      </ng-container>
+
+      <ng-container *ngIf="terceiro == false && tem == false" >
+        <h4>{{nome}}</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Quantidade</th>
+            <th scope="col">Produto</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="secondary">
+            <td>Quantidade</td>
+            <td>Produto</td>
+          </tr>
+          <tr>
+        </tbody>
+      </table>
+      </ng-container>
+
+
+      <ng-container *ngIf="terceiro == true && tem == true" >
+        <h4>{{nomeTerceiro}}</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Quantidade</th>
+            <th scope="col">Produto</th>
+            <th scope="col">Beneficiario</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of arrNovo" class="secondary">
+            <td>{{qtdAdd(product.produto.id, product.id)}}</td>
+            <td>{{nomeAdd(product.produto.id)}}</td>
+            <td>{{product.nomeBeneficiario}}</td>
+            <td>
+              <button value="{{product.produto.id}}" id="subtrair" (click)="diminui(product.produto.id, product.id)" class="action" >
+                <img src="https://cdn-assets-eu.frontify.com/s3/frontify-enterprise-files-eu/eyJwYXRoIjoiYm9zY2hcL2FjY291bnRzXC9hNVwvNDAwMDA5OFwvcHJvamVjdHNcLzc4XC9hc3NldHNcL2VkXC8zMTM4OVwvYzY2MzhjNTFlMzYzZWRjMzM5NjU4MDgwMTQ2NzE5ZGQtMTU5NTE4NDQ0NC5zdmcifQ:bosch:sUVWLFPLB19pxU8oozRzDq4FWWauT96-mLvHnBfrIpI?width=2400&color=0,123,192,1">
+              </button>
+            </td>
+          </tr>
+          <tr>
+        </tbody>
+      </table>
+      </ng-container>
+
+
+      <!-- Total de produtos para retirar -->
+      <h6>Produtos disponíveis para retirar</h6>
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" (click)="addTodos(arrIds)"/>
+        <label class="form-check-label" for="flexSwitchCheckDefault">Retirar todos os produtos</label>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Quantidade</th>
+            <th scope="col">Produto</th>
+            <th scope="col">Evento</th>
+            <th scope="col">Beneficiario</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of eventsBeneficiaryProduct" class="secondary">
+            <td>{{mostraQuantidade(product.id)}}</td>
+            <td>{{product.produto.name}}</td>
+            <td>{{product.evento.name}}</td>
+            <td>{{product.nomeBeneficiario}}</td>
+            <td>
+              <button value="{{product.produto.id}}" class="action" id="adicionar" (click)="add(mostraQuantidade(product.id), product.id)">
+                <img src="https://cdn-assets-eu.frontify.com/s3/frontify-enterprise-files-eu/eyJwYXRoIjoiYm9zY2hcL2FjY291bnRzXC9hNVwvNDAwMDA5OFwvcHJvamVjdHNcLzc4XC9hc3NldHNcLzVmXC8zMTM1NlwvZTAwMDJjZjJjNWI1ZTFmYjU3ODU3MTU4NWFjZjA3MTEtMTU5NTE4MzQ4Mi5zdmcifQ:bosch:iPd_aUGIfU5ePpx8aLqENl5C20ZqMOs2hwlRe7-RnGI?width=2400&color=0,123,192,1">
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="save-btn">
+    <a (click)="edit(arrIds)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+        <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+      </svg>
+    </a>
+  </div>
+ 

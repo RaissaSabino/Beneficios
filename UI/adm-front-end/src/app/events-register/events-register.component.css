@@ -1,0 +1,151 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans',  sans-serif;
+    
+}
+
+body{
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-repeat: no-repeat; 
+  background-size: cover;
+
+}
+
+.container{
+  width: 100%;
+  background: rgb(255, 255, 255);
+  padding: 25px 30px;
+
+}
+
+.title{
+  font-size: 25px;
+  font-weight: 500;
+  position: relative;
+}
+
+.container form .user-details{
+  display: flex;
+  margin: 20px 0 12px 0;
+  flex-direction: column;
+}
+
+form .user-details .input-box{
+  margin-bottom: 15px;
+}
+
+.user-details .input-box .details{
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.user-details .input-box input{
+  height: 45px;
+  width: 100%;
+  outline: none;
+  padding-left: 15px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  border: none;
+  border-bottom: 1px solid  #a1a1a1;
+}
+
+.user-details .input-box-date input{
+  height: 45px;
+  width: 25%;
+  outline: none;
+  padding-left: 15px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  border: none;
+  border-bottom: 1px solid  #a1a1a1;
+}
+
+.user-details .input-box input:focus,
+.user-details .input-box input:valid,
+.user-details .input-box-date input:focus,
+.user-details .input-box-date input:valid{
+  border: none;
+  border-bottom: 1px solid black;
+}
+
+
+
+
+
+@media only screen and (max-width: 1024px) {
+  
+  .container{
+    width: 70%;
+ 
+    }
+
+    .container .title{
+      font-size: 25px;
+      font-weight: 500;
+    } 
+
+    .user-details .input-box input{
+      height: 45px;
+      width: 100% !important;
+      outline: none;
+      border: none;
+      border-bottom: 1px solid #ccc;
+      padding-left: 1rem;
+      font-size: 15px;
+      border-bottom-width: 2px;  
+    }
+
+    .user-details .input-box-date input{
+      height: 45px;
+      width: 40% !important;
+      outline: none;
+      border: none;
+      border-bottom: 1px solid #ccc;
+      padding-left: 1rem;
+      font-size: 15px;
+      border-bottom-width: 2px;  
+    }
+
+}
+
+@media only screen and (max-width: 400px) {
+  
+  .container{
+    width: 100%;
+ 
+    }
+    .container .title{
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .user-details .input-box input{
+      height: 40px;
+      width: 100% !important;
+      outline: none;
+      border: none;
+      border-bottom: 1px solid #ccc;
+      padding-left: 1rem;
+      font-size: 15px;
+      border-bottom-width: 2px;  
+    }
+    .user-details .input-box-date input{
+      height: 40px;
+      width: 80% !important;
+      outline: none;
+      border: none;
+      border-bottom: 1px solid #ccc;
+      padding-left: 1rem;
+      font-size: 15px;
+      border-bottom-width: 2px;  
+    }
+
+}

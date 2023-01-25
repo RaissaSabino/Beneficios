@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Noto+Sans:wght@400;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans',  sans-serif;
+    
+}
+
+body{
+  display: flex;
+  height: 50vh;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.container{
+  width: 20%;
+  background: rgb(255, 255, 255);
+  padding: 30px 50px;
+  outline: none;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  border-bottom-width: 2px;
+  transition: all 0.3s ease;
+  box-shadow: 1px 1px 1px 0.5px rgba(0, 0, 0, 0.2);
+}
+
+
+ .title{
+  font-size: 25px;
+  font-weight: bold;
+  position: relative;
+  text-align: center;
+}
+
+.container form .user-details{
+  display: flex;
+  margin: 20px 0 12px 0;
+  flex-direction: column;
+}
+
+form .user-details .input-box{
+  margin-bottom: 15px;
+}
+
+.user-details .input-box .details{
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.user-details .input-box input{
+  height: 45px;
+  width: 100%;
+  outline: none;
+  border: 1px solid #ccc;
+  padding-left: 15px;
+  font-size: 16px;
+  border-bottom-width: 2px;
+  transition: all 0.3s ease;
+}
+
+.user-details .input-box input:focus,
+.user-details .input-box input:valid{
+    border: 1px solid;
+    border-color: rgb(97, 97, 97);
+}
+.btn-login{
+  width: 100%;
+  padding: 12px 0px;
+  margin-top: 10px;
+  text-transform: uppercase;
+  justify-self: center;
+  align-items: center;
+  font-size: 20px;
+  letter-spacing: 3px;
+  color: white;
+  font-weight: bold;
+  transition: 0.5s;
+  border: none;
+  background-color: #2d7db5;
+}
+
+@media only screen and (max-width: 1024px){
+  .container, form .user-details .input-box, .user-details .input-box .details,
+  .user-details .input-box input, .btn-login{
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}

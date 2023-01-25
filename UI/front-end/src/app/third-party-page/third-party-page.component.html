@@ -1,0 +1,35 @@
+<app-top-bar></app-top-bar>
+<body>
+    <div class="container">
+      <div class="title">Quero que retirem para mim</div>
+      <form action="#">
+        <div class="select" >
+          <select  class="select" name="format" id="selectEvento">
+            <option *ngFor="let events of eventsBeneficiary" value="{{events.evento.id}}" id="cpf">{{events.evento.name}}</option>
+          </select>
+        </div>
+        <div class="select">
+          <select [(ngModel)]="selected" class="select" name="format" id="select" (change)="onChange($event)">
+            <option value="CPF" id="cpf">Retirada via CPF</option>
+            <option value="EDV" id="edv">Colaborador Bosch</option>
+          </select>
+        </div>
+
+        <div class="user-details">
+          <div class="input-box" *ngIf="cpf_edv">
+            <span class="name" >Nome</span>
+            <input type="text" id="nomevalue" placeholder="Nome de quem vai retirar" required>
+          </div>
+          <div class="input-box" *ngIf="cpf_edv">
+            <span class="details">CPF</span>
+            <input type="text" id="cpfvalue" placeholder="CPF de quem vai retirar" required>
+          </div>
+          <div class="input-box"  *ngIf="!cpf_edv">
+            <span class="details">EDV</span>
+            <input type="text" id="edvvalue" placeholder="EDV de quem vai retirar" required>
+          </div>
+        </div>
+        <button type="submit" class="btn-login" (click)="ThirdParty()">Confirmar</button>
+      </form>
+    </div>   
+</body>

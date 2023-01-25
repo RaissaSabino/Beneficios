@@ -1,0 +1,22 @@
+a{
+    text-decoration: none;  
+    transition: 0.5s;
+}
+svg{
+    fill:#2d7db5 ;
+    width:288.801px;
+    height: 288.801px;
+}
+a:hover{
+    transform: scale(1.01);
+    transition: 0.5s;
+}
+.card{
+
+    text-transform: uppercase;
+    font-size: 1.5em; 
+}
+.card-header{
+    background-color: #2d7db5;
+    color: white;
+}

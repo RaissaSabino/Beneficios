@@ -1,0 +1,178 @@
+a{
+  text-decoration: none;  
+}
+svg{
+  fill:#2d7db5 ;
+  width:288.801px;
+  height: 288.801px;
+}
+
+
+.card-header{
+ text-align: start;
+ color: #737679;
+ font-weight: bold;
+}
+table {
+  color: #737679;
+  text-align: center;
+  width: 48%;
+  text-justify: center;
+}
+table thead{
+  font-weight: bold;
+  font-size: large;
+}
+.secondary{
+  background-color: whitesmoke;   
+}
+h6{
+  font-weight: bold;
+}
+
+
+.save-btn{
+  position: fixed;
+  right: 10em;
+  bottom: 2em;
+}
+.save-btn{
+  position: fixed;
+  right: 10em;
+  bottom: 2em;
+  transition: 0.5s;
+}
+
+.bt:hover{
+  transform: scale(1.05);
+  transition: 0.5s;
+}
+
+
+
+
+
+input{
+border-bottom: 1.8px solid #b1b0b0;
+border-top: none;
+border-left: none;
+border-right: none;
+margin-top: 15px;
+margin-bottom: 20px;
+width: 100%;
+  display: block;
+   
+}
+input:focus-visible{
+  outline: none;
+border-bottom: 1.8px solid #2d7db5;
+}
+
+
+
+.form-switch .form-check-input {
+width: 3.0em;
+height: 1.3em;
+}
+
+.form-check-label{
+margin-left: -42px;
+margin-top: -15px;
+color: rgba(0, 0, 0, 0.65);
+font-size: 16px;
+}
+.title{
+  width: 48%;
+}
+
+.title-beam{
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #F8F9FA; 
+  font-size: 20px;
+  color: #4f5153;
+  margin-bottom: 1em;
+}
+
+
+
+h2,h5{
+  color:#4f5153;
+}
+th{
+   font-size: medium;
+}
+
+.delete svg{
+   fill:  #ff0022;
+}
+
+.add svg{
+  fill:  black;
+  width: 35px;
+  height: 35px;
+}
+
+tbody svg{
+  width: 1.7em;
+  height: 1.7em;
+}
+tbody{
+  align-items: center;
+}
+
+.vr{
+  height: 45px;
+}
+.actions{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+td{
+  vertical-align:baseline;
+  margin: auto;
+}
+
+tbody svg:hover{
+  opacity: 1;
+}
+tbody svg{
+  opacity: 0.6;
+  transition: 0.3s;
+}
+@media (max-width: 991px) {
+  .vr{
+      display: none;
+  }
+}
+
+table tr th,
+table tr td {
+  text-align: center;
+}
+
+
+
+
+.prodDispo{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+ 
+}
+
+.form-control{
+border-left: 0;
+}
+
+.container{
+  height: 33em
+}
+
+

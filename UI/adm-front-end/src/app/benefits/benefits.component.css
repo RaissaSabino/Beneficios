@@ -1,0 +1,194 @@
+.dataTables_filter {
+	display: block !important;
+	}
+a{
+    text-decoration: none;  
+}
+.card-header{
+   text-align: start;
+   color: #737679;
+   font-weight: bold;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+}
+.card{
+    bottom: 1em;
+}
+table {
+    color: #737679;
+    text-align: center;
+}
+table thead{
+    font-weight: bold;
+    font-size: large;
+}
+.secondary{
+    background-color: whitesmoke;   
+}
+h6{
+    font-weight: bold;
+}
+
+
+
+
+
+
+.form-switch .form-check-input {
+	width: 3.0em;
+	height: 1.5em;
+	margin-left: 470px;
+	margin-top: -45px;
+	background-color: #93979b;
+}
+
+.form-check-label{
+	margin-left: 475px;
+	margin-top: -70px;
+	color: rgba(0, 0, 0, 0.65);
+	font-size: 16px;
+}
+
+
+
+h2,h5{
+   color:#4f5153;
+}
+th{
+    font-size: medium;
+}
+
+
+
+tbody img{
+    width: 1.7em;
+    height: 1.7em;
+}
+tbody{
+    align-items: center;
+}
+
+.vr{
+    height: 45px;
+}
+.actions{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+td{
+    vertical-align:baseline;
+	margin: auto;
+}
+
+tbody img:hover{
+    opacity: 1;
+}
+tbody img{
+    opacity: 0.6;
+    transition: 0.3s;
+}
+@media (max-width: 991px) {
+    .vr{
+        display: none;
+    }
+}
+
+
+
+table tr th,
+table tr td {
+    text-align: center;
+    vertical-align: middle;
+}
+.save-btn{
+    position: fixed;
+    right: 10em;
+    bottom: 2em;
+}
+.input-group{
+	width: 30%;
+}
+.form-control{
+	border-left: 0;
+}
+.input-group-text{
+	border-right: 0;
+	border-radius: 5px 0px  0px 5px;
+	background-color: #ffffff;
+}
+.input-group input,select{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+    color: #6C757D;
+}
+
+.input-group span{
+    border: none;
+}
+.input-group input:focus,select:focus{
+    box-shadow: none;
+    color:black
+}
+
+.pesquisa{
+	display: flex;
+	justify-content: end;
+}
+
+
+.save-btn{
+    position: fixed;
+    right: 10em;
+    bottom: 2em;
+    transition: 0.5s;
+}
+
+.save-btn:hover{
+    transform: scale(1.05);
+    transition: 0.5s;
+}
+
+.element{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1em;
+}
+.element input,select{
+    width: 80%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+    color: #6C757D;
+}
+.element input:focus{
+    box-shadow: none;
+    border-color: #2d7db5;
+}
+.add{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.productsList{
+    text-align: left;
+}
+.item{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.item h5{
+ text-align: right;
+}
+.prodList{
+    display: flex;
+    flex-direction: column;
+}

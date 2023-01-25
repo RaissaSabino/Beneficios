@@ -1,0 +1,18 @@
+<app-top-bar></app-top-bar>
+<div style="display: flex; width: 100%; height: 85%; flex-direction: row; justify-content: center;">
+    <div style="width: 10%; height: 10%">
+        <select name="evento" id="evento" (change)="pegaDados()">
+            <option *ngFor="let evento of eventos" value="{{evento.id}}">{{evento.name}}</option>
+        </select>
+    </div>
+    <div style="width: 85%; height: 85%;">
+        <canvas baseChart
+        [data]="barChartData"
+        [options]="barChartOptions"
+        [plugins]="barChartPlugins"
+        [type]="barChartType"
+        (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)">
+        </canvas>
+    </div>    
+</div>

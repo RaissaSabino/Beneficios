@@ -1,0 +1,20 @@
+<app-top-bar></app-top-bar>
+<body>
+    
+<div class="container">
+    <div class="title">Efetuar Login</div>
+    <form action="#">
+        <div class="user-details">
+            <div class="input-box">
+                <span class="details">Edv</span>
+                <input type="text" id="edv" placeholder="00000000"  required>
+            </div>
+            <div class="input-box">
+                <span class="details">Data Aniversário</span>
+                <input type="date" id="data"  required>
+            </div>
+        </div>
+        <button type="button" class="btn-login" (click)="login()">Entrar</button>
+    </form>
+</div>
+</body>

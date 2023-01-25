@@ -1,0 +1,433 @@
+<app-top-bar></app-top-bar>
+<div class="container">
+    
+<div class="card">
+    <div class="card-header">
+        <h4>Beneficiário</h4>
+        <div class="ShowCount">
+            <label for="showSelector">Beneficiários por página:</label>
+            <input name="showSelector" id="showSelector" type="number" value="9" (change)="SetItemsPerPage()" min="1" max="{{ totalItems }}"/>
+        </div> 
+    </div>
+    <div class="card-body">
+        <div class="d-flex flex-row bd-highlight justify-content-end mb-3">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">
+                        <img src="../../assets/img/icons/person-badage.svg" alt="" srcset="">
+                    </span>
+                </div>
+                <input type="text" class="form-control" placeholder="EDV" id="edvPesquisa" (input)="getAll()"
+                    aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">
+                        <img src="../../assets/img/icons/person.svg" alt="" srcset="">
+                    </span>
+                </div>
+                <input type="text" class="form-control" placeholder="Beneficiário" id="nomePesquisa" (input)="getAll()"
+                    aria-describedby="basic-addon1">
+            </div>
+        </div>
+
+        <table class="table  table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th scope="col" class="no-sort">Excluir</th>
+                    <th scope="col">EDV</th>
+                    <th scope="col">Beneficiário</th>
+                    <th scope="col">CPF</th>
+                    <th scope="col">Area</th>
+                    <th scope="col">Usuario</th>
+                    <th scope="col">Data da Inclusão</th>
+
+                    <th scope="col" class="no-sort">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let a of array; index as i">
+                    <ng-container *ngIf="i < max">
+                        <ng-container *ngIf="i >= min">
+                    <td>
+                        <a class="delete" (click)="takeMessage(a.beneficiario.edv,a.evento.id)" data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop">
+                            <img src="../../assets/img/icons/trash.svg" alt="" srcset="">
+                        </a>
+                    </td>
+                    <td>{{a.beneficiario.edv}}</td>
+                    <td>{{a.beneficiario.name}}</td>
+                    <td>{{a.beneficiario.cpf}}</td>
+                    <td>{{a.beneficiario.area}}</td>
+                    <td>{{a.beneficiario.user}}</td>
+                    <td>{{a.beneficiario.inclusionDate | date: 'dd/MM/yyyy'}}</td>
+                    <td>
+                        <div class="actions">
+                            <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                (click)="mostraDetalhes(a.beneficiario)" data-bs-toggle="modal"
+                                data-bs-target="#Detalhes">
+                                <img src="../../assets/img/icons/gift.svg" alt="" srcset="">
+                            </a>
+                            <div class="vr"></div>
+                            <a href="" (click)="mostraDetalhes(a.beneficiario)" data-bs-toggle="modal"
+                                data-bs-target="#Editar">
+                                <img src="../../assets/img/icons/edit.svg" alt="" srcset="">
+                            </a>
+
+
+                        </div>
+                   </td>
+                         </ng-container>
+                    </ng-container>
+                </tr>
+            </tbody>
+
+        </table>
+       <div class="registros">
+            Mostrando de {{ min + 1 }} até {{ max }} de
+            {{ totalItems }} registros
+         
+         <div class="pageControl">
+
+            <div class="buttons">
+                <div (click)="PagAnt()" id="AntBtn" class="pageButtons">
+                  <img src="../../assets/img/icons/left.svg" alt="" />
+                </div>
+    
+                <div
+                >
+                  <a class="btn btn-primary pages" >
+                    {{ pagAtual }}
+                  </a>
+                </div>
+                
+                <div (click)="ProxPag()" id="ProxBtn" class="pageButtons">
+                  <img src="../../assets/img/icons/right.svg" alt="" />
+                </div>
+              </div>
+        </div>
+    </div>
+    </div>
+    <div class="d-flex justify-content-between flex-column  save-btn">
+
+        <div class="pb-3 bt">
+            <a (click)="rollback()">
+                <img src="../../assets/img/icons/return.svg" alt="" srcset="">
+            </a>
+        </div>
+        <div class="bt">
+            <a data-bs-toggle="modal" data-bs-target="#Adicionar">
+                <img src="../../assets/img/icons/add.svg" alt="" srcset="">
+            </a>
+        </div>
+    </div>
+
+
+
+
+
+<div class="modal fade" id="Editar" tabindex="-1" aria-labelledby="EditarLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar Produtos</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex justify-content-between">
+                    <div class="title">
+                        <div class="title-beam"> <label>Produtos selecionados</label> </div>
+                    </div>
+                    <div class="title">
+                        <div class="prodDispo">
+                            <div class="title-beam">
+                                <label>Produtos disponíveis</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between tabelasRegistro">
+
+
+                    <table class="table  table-hover table-bordered">
+
+                        <thead>
+                            <tr>
+                                <th scope="col">Quantidade</th>
+                                <th scope="col">Produto</th>
+                                <th scope="col">Excluir</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr *ngFor="let a of arrayProdEdit index as indexOfelement;">
+                                <td>
+                                    <div class="input-group">
+                                        <input type="number" class="quantidade form-control" *ngIf="indexOfelement < arrayQuantity.length" id="qtdAdd" value="{{arrayQuantity[indexOfelement].quantity}}" 
+                                            aria-describedby="basic-addon1">
+                                            <input type="number" class="quantidade form-control" *ngIf="indexOfelement >= arrayQuantity.length" id="qtdAdd" value="" 
+                                            aria-describedby="basic-addon1">
+                                    </div>
+                                </td>
+                                <td>{{a.name}}</td>
+
+                                <td>
+                                    <a (click)="removeProdList(a)">
+                                        <img src="../../assets/img/icons/trash.svg" alt="" srcset="">
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table  table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Produto</th>
+
+                                <th scope="col" class="no-sort">Adiconar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let a of arrayProdList">
+                                <td>{{a.name}}</td>
+                                <td>
+                                    <a (click)="addProdList(a)">
+                                        <img src="../../assets/img/icons/add.svg" alt="" srcset="">
+                                    </a>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#Adicionar"
+                    data-bs-dismiss="modal">Voltar</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                    (click)="registerProducts(detalhes.edv)">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal fade" id="Detalhes" tabindex="-1" aria-labelledby="DetalhesLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h5 class="modal-title" id="DetalheslLabel">Produtos</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body add">
+
+                <table class="table  table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Quantidade</th>
+                            <th scope="col">Produto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let a of arrayProd">
+                            <td>{{a.quantity}}</td>
+                            <td>{{a.produto.name}}</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="Adicionar" tabindex="-2" aria-labelledby="AdicionarLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h5 class="modal-title" id="AdicionarlLabel">Adicionar Beneficiário</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body add">
+                <div class="d-flex flex-row bd-highlight justify-content-end">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">
+                                <img src="../../assets/img/icons/search.svg" alt="" srcset="">
+                            </span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="EDV" id="edvPesquisaAdd"
+                            (input)="getAllBeneficiario()" (blur)="verificaBeneficiarioEvento()" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+
+                <div class="element">
+                    <label for="nome" class="col-form-label">EDV:</label>
+                    <input type="text" class="form-control"  value="{{AddBeneficiario.edv}}"  disabled>
+                </div>
+                <div class="element">
+                    <label for="nome" class="col-form-label">Beneficiário:</label>
+                    <input type="text" class="form-control"  value="{{AddBeneficiario.name}}" disabled>
+                </div>
+                <div class="element">
+                    <label for="nome" class="col-form-label">CPF:</label>
+                    <input type="text" class="form-control"  value="{{AddBeneficiario.cpf}}" disabled>
+                </div>
+                <div class="element">
+                    <label for="nome" class="col-form-label">Area:</label>
+                    <input type="text" class="form-control" value="{{AddBeneficiario.area}}" disabled>
+                </div>
+                <div class="element">
+                    <label for="nome" class="col-form-label">Usuário:</label>
+                    <input type="text" class="form-control"  value="{{AddBeneficiario.user}}" disabled>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn  btn-light" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#CadastraBeneficiario" >Beneficiário não existe? clique aqui para cadastrar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                    (click)="cancelAdd()">Cancelar</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal"
+                    data-bs-target="#AddEstoque">Avançar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="AddEstoque" tabindex="-3" aria-labelledby="AddEstoqueLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Adicionar Produtos</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex justify-content-between">
+                    <div class="title">
+                        <div class="title-beam"> <label>Produtos selecionados</label> </div>
+                    </div>
+                    <div class="title">
+                        <div class="prodDispo">
+                            <div class="title-beam">
+                                <label>Produtos disponíveis</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between tabelasRegistro">
+
+
+                    <table class="table  table-hover table-bordered">
+
+                        <thead>
+                            <tr>
+                                <th scope="col">Qtd</th>
+                                <th scope="col">Produto</th>
+                                <th scope="col">Excluir</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr *ngFor="let a of arrayProdEdit">
+                                <td>
+                                    <div class="input-group qtd">
+                                        <input type="number" class="quantidade form-control" id="qtdAdd"
+                                            aria-describedby="basic-addon1">
+                                    </div>
+                                </td>
+                                <td>{{a.name}}</td>
+
+                                <td>
+                                    <a (click)="removeProdList(a)">
+                                        <img src="../../assets/img/icons/trash.svg" alt="" srcset="">
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table  table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Produto</th>
+
+                                <th scope="col" class="no-sort">Adiconar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let a of arrayProdList">
+                                <td>{{a.name}}</td>
+                                <td>
+                                    <a (click)="addProdList(a)">
+                                        <img src="../../assets/img/icons/add.svg" alt="" srcset="">
+                                    </a>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#Adicionar"
+                    data-bs-dismiss="modal">Voltar</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                    (click)="addEventBeneficiary()">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="CadastraBeneficiario" tabindex="-5" aria-labelledby="CadastraBeneficiario" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h5 class="modal-title" id="CadastraBeneficiario">Adicionar Novo Beneficiário</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body add">
+                <div class="element">
+                    <label for="nome" class="col-form-label">EDV:</label>
+                    <input type="text" class="form-control" id="edvAdd" >
+                </div>
+                <div class="element">
+                    <label for="nome" class="col-form-label">Beneficiário:</label>
+                    <input type="text" class="form-control" id="beneficiarioAdd" >
+                </div>
+                <div class="element">
+                    <label for="nome" class="col-form-label">CPF:</label>
+                    <input type="text" class="form-control" id="cpfAdd" >
+                </div>
+                <div class="element">
+                    <label for="nome" class="col-form-label">Area:</label>
+                    <input type="text" class="form-control" id="areaAdd" >
+                </div>
+                <div class="element">
+                    <label for="nome" class="col-form-label">Usuário:</label>
+                    <input type="text" class="form-control" id="usuarioAdd" >
+                </div>
+                <div class="element">
+                    <label for="nome" class="col-form-label">Data de Aniversário:</label>
+                    <input type="date" class="form-control" id="aniversarioAdd">
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                    (click)="cancelAdd()">Cancelar</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="AddBeneficiary()" >Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

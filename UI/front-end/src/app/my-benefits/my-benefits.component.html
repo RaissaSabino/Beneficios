@@ -1,0 +1,36 @@
+<app-top-bar></app-top-bar>
+<div class="container">
+    <h1>Bem-Vindo <span>{{beneficiary.name}}</span></h1>
+
+    <table  class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Status</th>
+            <th scope="col">Benefício</th>
+            <th scope="col">Evento</th>
+            <th scope="col">Quantidade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let event of eventsBeneficiaryProduct">
+            <th scope="row">
+                <ng-container *ngIf="event.deliveredDate != '0001-01-01T00:00:00' && event.quantity==0" xmlns="http://www.w3.org/2000/svg" fill="#3f74e8" viewBox="0 0 16 16">                  
+                  <a class="delete"> 
+                    <img src="https://img.icons8.com/fluency/48/000000/cancel.png" style="width: 30px; height: 30px;" alt="" srcset="">                                
+                  </a>  
+                </ng-container>
+                <ng-container *ngIf="event.deliveredDate == '0001-01-01T00:00:00' && event.quantity>0" xmlns="http://www.w3.org/2000/svg"fill="currentColor" viewBox="0 0 16 16">                 
+                  <a class="delete" >                                                      
+                    <img src="https://img.icons8.com/tiny-color/48/000000/experimental-ok-tiny-color.png" style="width: 26px; height: 26px;" alt="" srcset="">
+                  </a>
+                </ng-container>
+            </th>
+            <td>{{event.produto.name}}</td>
+            <td>{{event.eventosBeneficiario.evento.name}}</td>
+            <td>{{event.quantity}}</td>
+          </tr> 
+        </tbody>
+      </table>
+</div>
+
+

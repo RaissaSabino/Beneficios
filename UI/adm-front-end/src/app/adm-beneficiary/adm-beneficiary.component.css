@@ -1,0 +1,13 @@
+@import url('../beneficiaries/beneficiaries.component.css');
+
+
+.modal-body img{
+    width:100%; 
+    height:8em; 
+    margin-bottom: 1em;
+    opacity: 0.8;
+}
+
+.btn{
+    font-size: large;
+}
